@@ -1,30 +1,7 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This sample API application is build on NestJS, a NodeJS framework, with Typescript. NestJS provides an MVC approach to javascript/typescript backends.
+[Nest](https://github.com/nestjs/nest)
 
 ## Installation
 
@@ -32,9 +9,23 @@
 $ npm install
 ```
 
+## Requirements
+
+### MongoDB
+
+This project is configured for MongoDB. For conveniece, a setup script is provided in package.json to initilize a docker instance of mongo. If you'd prerfer to use a different instance, change the mongo connection string in `.env` to point to your instance.
+
+### Seeding the database
+
+For the sake of expediency, a seed script is provided TODO: add seed script.
+This will seed the database with 4 users; 1 librarian, and 3 customers. The librarian has custom user id 1, and the customers have ids 2-4. Note: custom_id field will be used for this exercise. In a real world scenario, we'd use the ObjectID provided by MongoDB, a similarly configured UUID. Custom ids in this application are sequential, and unique.
+
 ## Running the app
 
 ```bash
+# (optional) start a mongo instance
+$ npm run setup
+
 # development
 $ npm run start
 
@@ -58,16 +49,25 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Documentation
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+This application provides generated swagger documentation, using [NestJS swagger](https://docs.nestjs.com/openapi/introduction). This will deploy when the application is started, and can be viewed on http://localhost:3000/api.
 
-## Stay in touch
+## Authorization
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+As per the assignment, no system of authentication will be in place. However, we will provided a simple RBAC system using [NestJS authorization module](https://docs.nestjs.com/security/authorization).
+The roles claim will utilize an auth header, `x-custom-user-id`. This will be collated against a simple roles collection which will provide the authorization roleid for the user.
+The roles collection will be seeded with the following roles:
 
-## License
+```json
+{
+    "id": 1,
+    "name": "librarian"
+},
+{
+    "id": 2,
+    "name": "customer"
+}
+[...]
+```
 
-Nest is [MIT licensed](LICENSE).

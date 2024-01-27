@@ -1,0 +1,92 @@
+{
+  "users": [
+    {
+      "userId": "1",
+      "name": {
+        "firstName": "Gertrude",
+        "lastName": "Melencamp"
+      },
+      "email": "gertrude@library.gov"
+    },
+    {
+      "userId": "2",
+      "name": {
+        "firstName": "Bobothy",
+        "lastName": "Simmons"
+      },
+      "email": "bobby@mail.org"
+    },
+    {
+      "userId": "3",
+      "name": {
+        "firstName": "Horacio",
+        "lastName": "Ignacio"
+      },
+      "email": "horacehearswho@mymail.com"
+    },
+    {
+      "userId": "4",
+      "name": {
+        "firstName": "Timothy",
+        "lastName": "Timmerson"
+      },
+      "email": "timtimtaroo@mycompany.com"
+    }
+  ],
+  "books": [
+    {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "isbn": "9780743273565",
+      "genre": "Fiction",
+      "publishDate": "1925-04-10",
+      "description": "The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald that follows a cast of characters living in the fictional towns of West Egg and East Egg on prosperous Long Island in the summer of 1922.",
+      "status": "AVAILABLE"
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "author": "J. D. Salinger",
+      "isbn": "9780316769488",
+      "genre": "Fiction",
+      "publishDate": "1951-07-16",
+      "description": "The Catcher in the Rye is a story by J. D. Salinger, partially published in serial form in 1945–1946 and as a novel in 1951.",
+      "status": "AVAILABLE"
+    },
+    {
+      "title": "The Grapes of Wrath",
+      "author": "John Steinbeck",
+      "isbn": "9780143039433",
+      "genre": "Fiction",
+      "publishDate": "1939-04-14",
+      "description": "The Grapes of Wrath is an American realist novel written by John Steinbeck and published in 1939.",
+      "status": "AVAILABLE"
+    },
+    {
+      "title": "The Sun Also Rises",
+      "author": "Ernest Hemingway",
+      "isbn": "9780743297332",
+      "genre": "Fiction",
+      "publishDate": "1926-10-22",
+      "description": "The Sun Also Rises is a 1926 novel by American writer Ernest Hemingway, his first, that portrays American and British expatriates who travel from Paris to the Festival of San Fermín in Pamplona to watch the running of the bulls and the bullfights.",
+      "status": "AVAILABLE"
+    }
+  ],
+  "roles": [
+    {
+      "userId": "1",
+      "role": "LIBRARIAN"
+    },
+    {
+      "userId": "2",
+      "role": "USER"
+    },
+    {
+      "userId": "3",
+      "role": "USER"
+    },
+    {
+      "userId": "4",
+      "role": "USER"
+    }
+  ]
+}
