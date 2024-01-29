@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
-  IsDate,
+  IsDateString,
   IsNotEmpty,
   IsOptional,
   IsString,
@@ -19,7 +19,7 @@ export class CreateBookDto {
   author: string;
 
   @IsString()
-  @Length(10, 13, { message: 'ISBN must be 10 or 13 characters long' }) // Technically 10 OR 13, but that would require a custom validator
+  @Length(10, 13, { message: 'ISBN must be 10 or 13 numbers long' }) // Technically 10 OR 13, but that would require a custom validator
   @ApiProperty()
   isbn: string;
 
@@ -28,7 +28,7 @@ export class CreateBookDto {
   @ApiPropertyOptional()
   genre?: string;
 
-  @IsDate()
+  @IsDateString()
   @IsOptional()
   @ApiPropertyOptional()
   publishDate?: Date;

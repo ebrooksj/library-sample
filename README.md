@@ -20,7 +20,7 @@ This application is build using the following core technologies:
 
 Installation requires npm. This application was build and tested in nodejs v20.9.0.
 If you are using nvm, an `.nvmrc` file is provided for convenience, though this notably does not work on windows.
-If you are on windows, you can use the npm script provided `npm run use` to set the node version for nvm.
+If you are on windows, you can use the command `nvm use (cat .nvmrc)` to set the node version for nvm.
 
 ```bash
 #(optional)
@@ -39,6 +39,7 @@ This should install all dependencies. If for some reason you're having trouble w
 - For Books, title, isnbn, and author are required fields. Optionally, publishDate and genre can be provided.
 - For Users, integer ids are required. Hence the double id fields.
 - For Users, firstName, lastName, and email are required fields.
+- No APIs are available anonymously.
 
 ## Requirements
 
@@ -183,3 +184,7 @@ There are 4 basic data models in this application.
 - UserRole - the user Role for permissions
 
 For convenience, books are referenced by bookcheckouts by the `book` field, which is a dbref. This can be populated by mongoose at query time. In the database, this will appear as a BSON id.
+The ERD is provided in `entity-relationship-diagram.png`.
+
+## License
+No licenses, just library cards.

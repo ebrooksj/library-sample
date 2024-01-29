@@ -6,7 +6,7 @@ import { User } from './entities/user.entity';
 describe('UsersService', () => {
   let service: UsersService;
 
-  let { mock: UserModelMock, provider: UserModelProvider } =
+  const { mock: UserModelMock, provider: UserModelProvider } =
     mockModelProviderFactory(User.name);
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

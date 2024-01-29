@@ -4,14 +4,12 @@ import {
   Controller,
   Delete,
   Get,
-  Headers,
   HttpCode,
   InternalServerErrorException,
   Logger,
   NotFoundException,
   Param,
   Post,
-  Query,
   UnprocessableEntityException,
   UseGuards,
 } from '@nestjs/common';
@@ -19,13 +17,12 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import mongoose from 'mongoose';
 import { HasRole } from '../authorization/decorators/roles/role.decorator';
 import { Role } from '../authorization/decorators/roles/role.enum';
+import { UserAPIToken } from '../authorization/decorators/user-api-token/user-api-token.decorator';
 import { HasRoleGuard } from '../authorization/guards/has-role/has-role.guard';
 import { APP_CONSTANTS } from '../config';
 import { BooksService } from './books.service';
 import { CreateBookCheckoutDto } from './dto/create-book-checkout.dto';
 import { CreateBookDto } from './dto/create-book.dto';
-import { UserIdParamDto } from './dto/user-id-param.dto';
-import { UserAPIToken } from '../authorization/decorators/user-api-token/user-api-token.decorator';
 
 @UseGuards(HasRoleGuard)
 @Controller('books')
@@ -114,8 +111,8 @@ export class BooksController {
 
   @Get('checkout/overdue')
   @HasRole(Role.LIBRARIAN)
-  findOverdue(@Query() { user }: UserIdParamDto) {
-    return this.booksService.getOverdueBooks(user);
+  findOverdue() {
+    return this.booksService.getOverdueBooks();
   }
 
   @Get('checkout/active')

@@ -135,7 +135,7 @@ describe('BooksService', () => {
     });
 
     it('should return unknown if an error occurs updating the book status and reset checkout status', async () => {
-      let mockCheckout = {
+      const mockCheckout = {
         _id: '1',
         status: 'LOANED',
         save: jest.fn().mockReturnThis(),
@@ -149,7 +149,7 @@ describe('BooksService', () => {
     });
 
     it('should return nothing and update the book status', async () => {
-      let mockCheckout = {
+      const mockCheckout = {
         _id: '1',
         status: BookCheckoutStatus.LOANED,
         save: jest.fn().mockReturnThis(),
@@ -169,7 +169,7 @@ describe('BooksService', () => {
         title: 'title',
         author: 'Robert Jordan',
       };
-      const result = await service.create(mockRequest);
+      await service.create(mockRequest);
       expect(BookModelMock.create).toHaveBeenCalledTimes(1);
       expect(BookModelMock.create).toHaveBeenCalledWith({
         ...mockRequest,
@@ -181,7 +181,7 @@ describe('BooksService', () => {
   describe('getOverdueBooks', () => {
     it('should return an empty array if no overdue books are found', async () => {
       BookCheckoutModelMock.populate.mockResolvedValueOnce([]);
-      const result = await service.getOverdueBooks(1);
+      const result = await service.getOverdueBooks();
       expect(result).toEqual([]);
     });
 
@@ -192,7 +192,7 @@ describe('BooksService', () => {
         dueDate: new Date(Date.now() - 10000),
       };
       BookCheckoutModelMock.populate.mockResolvedValueOnce([mockOverdueBook]);
-      const result = await service.getOverdueBooks(1);
+      const result = await service.getOverdueBooks();
       expect(result).toEqual([mockOverdueBook]);
     });
   });
@@ -289,7 +289,7 @@ describe('BooksService', () => {
       const result = await service.remove('id');
       expect(result).toEqual({ error: 'unknown error' });
     });
-    
+
     it('should call delete if the book is eligible for deletion', async () => {
       const mockBook = {
         _id: '1',

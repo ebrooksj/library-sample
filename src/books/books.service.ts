@@ -62,7 +62,7 @@ export class BooksService {
     }
   }
 
-  private findAvailableByIsbn(isbn: String) {
+  private findAvailableByIsbn(isbn: string) {
     this.logger.debug(`Finding first available book with isbn ${isbn}`);
     return this.BookModel.findOne({
       isbn,
@@ -77,9 +77,8 @@ export class BooksService {
     }).populate('book');
   }
 
-  async getOverdueBooks(userId: number) {
+  async getOverdueBooks() {
     return this.BookCheckoutModel.find({
-      userId,
       status: BookCheckoutStatus.LOANED.toString(),
       dueDate: { $lt: new Date() },
     }).populate('book');
@@ -153,6 +152,7 @@ export class BooksService {
       );
       this.logger.verbose(
         `Successfully checked out book ${book._id} to user ${userId}`,
+        updateResult,
       );
     } catch (error) {
       this.logger.error(`Error updating book status: ${error}`);

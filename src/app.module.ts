@@ -1,17 +1,12 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
-import { BooksModule } from './books/books.module';
-import { AuthorizationService } from './authorization/authorization.service';
-import { APP_GUARD } from '@nestjs/core';
-import { HasRoleGuard } from './authorization/guards/has-role/has-role.guard';
-import { SetUserRoleMiddleware } from './authorization/middleware/get-user-role/set-user-role.middleware';
-import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { AuthorizationService } from './authorization/authorization.service';
+import { UserRole, UserRoleSchema } from './authorization/entities/role.entity';
+import { SetUserRoleMiddleware } from './authorization/middleware/get-user-role/set-user-role.middleware';
+import { BooksModule } from './books/books.module';
 import { ENV_KEYS } from './config/env.constants';
-import {
-  UserRole,
-  UserRoleSchema,
-} from './authorization/entities/role.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [

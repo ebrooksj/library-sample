@@ -157,7 +157,7 @@ describe('BooksController', () => {
     it('should return the overdue books', async () => {
       const mockResult = [{ _id: '1' }];
       BooksServiceMock.getOverdueBooks.mockResolvedValueOnce(mockResult as any);
-      const result = await controller.findOverdue({ user: 1 });
+      const result = await controller.findOverdue();
       expect(result).toEqual(mockResult);
     });
   });

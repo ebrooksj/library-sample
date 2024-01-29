@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
-import { BooksService } from './books.service';
-import { BooksController } from './books.controller';
-import { UsersModule } from '../users/users.module';
-import { UsersService } from '../users/users.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Book, BookSchema } from './entities/book.entity';
+import { UsersModule } from '../users/users.module';
+import { BooksController } from './books.controller';
+import { BooksService } from './books.service';
 import {
   BookCheckout,
   BookCheckoutSchema,
 } from './entities/book-checkout.entity';
+import { Book, BookSchema } from './entities/book.entity';
 
 @Module({
   imports: [
