@@ -16,7 +16,7 @@ export class Book {
   @Prop({ required: true })
   author: string;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true })
   isbn: string;
 
   @Prop()

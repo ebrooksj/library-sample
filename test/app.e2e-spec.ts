@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
+// In the interest of time, no e2e tests are provided, but the stub has been left here.
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 

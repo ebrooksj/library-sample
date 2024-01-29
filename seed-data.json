@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "userId": "1",
+      "userId": 1,
       "name": {
         "firstName": "Gertrude",
         "lastName": "Melencamp"
@@ -9,7 +9,7 @@
       "email": "gertrude@library.gov"
     },
     {
-      "userId": "2",
+      "userId": 2,
       "name": {
         "firstName": "Bobothy",
         "lastName": "Simmons"
@@ -17,7 +17,7 @@
       "email": "bobby@mail.org"
     },
     {
-      "userId": "3",
+      "userId": 3,
       "name": {
         "firstName": "Horacio",
         "lastName": "Ignacio"
@@ -25,7 +25,7 @@
       "email": "horacehearswho@mymail.com"
     },
     {
-      "userId": "4",
+      "userId": 4,
       "name": {
         "firstName": "Timothy",
         "lastName": "Timmerson"
@@ -71,21 +71,21 @@
       "status": "AVAILABLE"
     }
   ],
-  "roles": [
+  "userroles": [
     {
-      "userId": "1",
+      "userId": 1,
       "role": "LIBRARIAN"
     },
     {
-      "userId": "2",
+      "userId": 2,
       "role": "USER"
     },
     {
-      "userId": "3",
+      "userId": 3,
       "role": "USER"
     },
     {
-      "userId": "4",
+      "userId": 4,
       "role": "USER"
     }
   ]

@@ -7,6 +7,9 @@ const modelMock = {
   find: jest.fn<() => Promise<any>>().mockReturnThis(),
   save: jest.fn<() => Promise<any>>().mockReturnThis(),
   delete: jest.fn<() => Promise<any>>().mockReturnThis(),
+  deleteOne: jest.fn<() => Promise<any>>().mockReturnThis(),
+  populate: jest.fn<() => Promise<any>>().mockReturnThis(),
+  updateOne: jest.fn<() => Promise<any>>().mockReturnThis(),
 };
 
 const mockModelProviderFactory = (provide: string) => {

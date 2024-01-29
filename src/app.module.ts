@@ -1,17 +1,17 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { BooksModule } from './books/books.module';
-import { AuthenticationService } from './authentication/authentication.service';
+import { AuthorizationService } from './authorization/authorization.service';
 import { APP_GUARD } from '@nestjs/core';
-import { HasRoleGuard } from './authentication/guards/has-role/has-role.guard';
-import { SetUserRoleMiddleware } from './authentication/middleware/get-user-role/set-user-role.middleware';
+import { HasRoleGuard } from './authorization/guards/has-role/has-role.guard';
+import { SetUserRoleMiddleware } from './authorization/middleware/get-user-role/set-user-role.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ENV_KEYS } from './config/env.constants';
 import {
   UserRole,
   UserRoleSchema,
-} from './authentication/entities/role.entity';
+} from './authorization/entities/role.entity';
 
 @Module({
   imports: [
@@ -34,11 +34,12 @@ import {
   ],
   controllers: [],
   providers: [
-    AuthenticationService,
-    {
-      provide: APP_GUARD,
-      useClass: HasRoleGuard,
-    },
+    AuthorizationService,
+    // Providing the APP_GUARD token provides the HasRoleGuard to all routes.
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: HasRoleGuard,
+    // },
   ],
 })
 export class AppModule implements NestModule {

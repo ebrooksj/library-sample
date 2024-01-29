@@ -1,45 +1,35 @@
 import {
   Controller,
   Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
+  Headers,
+  Logger,
+  NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
+import { HasRole } from '../authorization/decorators/roles/role.decorator';
+import { Role } from '../authorization/decorators/roles/role.enum';
+import { HasRoleGuard } from '../authorization/guards/has-role/has-role.guard';
+import { APP_CONSTANTS } from '../config';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { HasRole } from '../authentication/decorators/roles/role.decorator';
-import { Role } from '../authentication/decorators/roles/role.enum';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { UserAPIToken } from '../authorization/decorators/user-api-token/user-api-token.decorator';
 
 @Controller('users')
+@UseGuards(HasRoleGuard)
+@ApiTags('users')
+@ApiBearerAuth(APP_CONSTANTS.AUTH_HEADER)
 export class UsersController {
+  private readonly logger = new Logger(UsersController.name);
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.usersService.findAll();
-  }
-
-  @Get(':id')
-  @HasRole(Role.LIBRARIAN)
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  @Get('me')
+  @HasRole(Role.USER)
+  async findOne(@UserAPIToken() userId: string) {
+    this.logger.debug(`Finding user ${userId}`);
+    const user = await this.usersService.findOne(+userId);
+    if (!user) {
+      throw new NotFoundException();
+    }
+    return user;
   }
 }
